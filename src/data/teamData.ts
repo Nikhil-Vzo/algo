@@ -26,7 +26,7 @@ const teamCategories: TeamCategory[] = [
         id: 'overall',
         name: 'Overall',
         members: [
-            { id: 1, name: 'Nitin Kumar Singh', image: 'https://i.ibb.co/G3N1WkmM/nitin.webp' },
+            { id: 1, name: 'Nitin Kumar Singh', image: 'https://i.ibb.co/G3N1WkmM/nitin.jpg' },
             { id: 2, name: 'Biswajit Nayak', image: 'https://i.ibb.co/ds7SL7w8/biswajit.jpg' },
         ],
     },
@@ -42,8 +42,8 @@ const teamCategories: TeamCategory[] = [
         name: 'Design',
         members: [
             { id: 4, name: 'Aditya Chourasia', lead: true, image: 'https://i.ibb.co/VcJxRMY5/aditya.jpg' },
-            { id: 5, name: 'Ashutosh Sahu', image: 'https://i.ibb.co/8LKhhz9f/ashutosh.webp' },
-            { id: 6, name: 'Atharav Pratap Singh', image: 'https://i.ibb.co/tTbqbnjt/athrav.webp' },
+            { id: 5, name: 'Ashutosh Sahu', image: 'https://i.ibb.co/8LKhhz9f/ashutosh.jpg' },
+            { id: 6, name: 'Atharav Pratap Singh', image: 'https://i.ibb.co/tTbqbnjt/athrav.jpg' },
             { id: 7, name: 'Rupendra Kumar Sahu', image: 'https://i.ibb.co/gM28D0QT/rupendra.jpg' },
         ],
     },
@@ -52,8 +52,8 @@ const teamCategories: TeamCategory[] = [
         name: 'Social Media',
         members: [
             { id: 8, name: 'Gourav Kumar Behera', lead: true, image: 'https://i.ibb.co/KcQbJGFm/gourav.jpg' },
-            { id: 9, name: 'Tushar Shendey', image: 'https://i.ibb.co/YFhmKWyS/tushar.webp' },
-            { id: 10, name: 'Shreya Barde', image: 'https://i.ibb.co/xSv1W4wb/shreya.webp' },
+            { id: 9, name: 'Tushar Shendey', image: 'https://i.ibb.co/YFhmKWyS/tushar.jpg' },
+            { id: 10, name: 'Shreya Barde', image: 'https://i.ibb.co/xSv1W4wb/shreya.jpg' },
             { id: 11, name: 'Jiya Dhand', image: 'https://i.ibb.co/JjP46w9x/jiya.jpg' },
             { id: 12, name: 'Komal Meghani', image: 'https://i.ibb.co/Vcf6YSvk/komal.jpg' },
         ],
@@ -62,7 +62,7 @@ const teamCategories: TeamCategory[] = [
         id: 'financial-sponsorship',
         name: 'Financial & Sponsorship',
         members: [
-            { id: 13, name: 'Manisha Biswal', image: 'https://i.ibb.co/x83zN0Yp/manisha.webp' },
+            { id: 13, name: 'Manisha Biswal', image: 'https://i.ibb.co/x83zN0Yp/manisha.jpg' },
             { id: 14, name: 'Naman Kumar', image: 'https://i.ibb.co/C5h6j04q/naman.jpg' },
             { id: 15, name: 'Anshu', image: 'https://i.ibb.co/1htHgWY/anshu.jpg' },
         ],
@@ -74,18 +74,18 @@ const teamCategories: TeamCategory[] = [
             { id: 16, name: 'Yuti Sasane', lead: true, image: 'https://i.ibb.co/KxGKmQC6/yuti.jpg' },
             { id: 17, name: 'Ujjawal Singh', image: 'https://i.ibb.co/cht2bcnx/ujjawal.jpg' },
             { id: 18, name: 'Shruti Kumari', image: 'https://i.ibb.co/pjWBWNz8/shruti.jpg' },
-            { id: 19, name: 'Kartik Shreekumar', image: 'https://i.ibb.co/prKT7pLB/kartik.webp' },
-            { id: 20, name: 'Yogesh Sunil Wathe', image: 'https://i.ibb.co/nsZ0y4C6/yogesh.webp' },
+            { id: 19, name: 'Kartik Shreekumar', image: 'https://i.ibb.co/prKT7pLB/kartik.jpg' },
+            { id: 20, name: 'Yogesh Sunil Wathe', image: 'https://i.ibb.co/nsZ0y4C6/yogesh.jpg' },
         ],
     },
     {
         id: 'registration',
         name: 'Registration Committee',
         members: [
-            { id: 21, name: 'Sakshi Bhatt', image: 'https://i.ibb.co/d4PJy9kS/sakshi.webp' },
+            { id: 21, name: 'Sakshi Bhatt', image: 'https://i.ibb.co/d4PJy9kS/sakshi.jpg' },
             { id: 22, name: 'Anushka Choudhary', image: 'https://i.ibb.co/kgRntqSs/anushka.jpg' },
             { id: 23, name: 'Swati Agrawal', image: 'https://i.ibb.co/wr4sW6wJ/swati.jpg' },
-            { id: 24, name: 'Nibedita Patel', image: 'https://i.ibb.co/Y7XJ6hh5/nibedita.webp' },
+            { id: 24, name: 'Nibedita Patel', image: 'https://i.ibb.co/Y7XJ6hh5/nibedita.jpg' },
         ],
     },
     {

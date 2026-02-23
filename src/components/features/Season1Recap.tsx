@@ -6,12 +6,12 @@ import './Season1Recap.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
-    'https://i.ibb.co/0jPJQvm7/Whats-App-Image-2026-02-20-at-1-18-22-PM.webp',
-    'https://i.ibb.co/zTx9yKQm/Whats-App-Image-2026-02-20-at-1-18-29-PM-1.webp',
-    'https://i.ibb.co/8Dscnykd/Whats-App-Image-2026-02-20-at-1-18-29-PM.webp',
-    'https://i.ibb.co/whkmswTD/Whats-App-Image-2026-02-20-at-1-18-21-PM.webp',
-    'https://i.ibb.co/MyM4sDKn/Whats-App-Image-2026-02-20-at-1-18-22-PM-1.webp',
-    'https://i.ibb.co/7JhTL6JC/Whats-App-Image-2026-02-20-at-1-18-22-PM-2.webp',
+    'https://i.ibb.co/0jPJQvm7/Whats-App-Image-2026-02-20-at-1-18-22-PM.jpg',
+    'https://i.ibb.co/zTx9yKQm/Whats-App-Image-2026-02-20-at-1-18-29-PM-1.jpg',
+    'https://i.ibb.co/8Dscnykd/Whats-App-Image-2026-02-20-at-1-18-29-PM.jpg',
+    'https://i.ibb.co/whkmswTD/Whats-App-Image-2026-02-20-at-1-18-21-PM.jpg',
+    'https://i.ibb.co/MyM4sDKn/Whats-App-Image-2026-02-20-at-1-18-22-PM-1.jpg',
+    'https://i.ibb.co/7JhTL6JC/Whats-App-Image-2026-02-20-at-1-18-22-PM-2.jpg',
 ];
 
 export default function Season1Recap() {
