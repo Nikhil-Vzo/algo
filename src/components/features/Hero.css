@@ -1,0 +1,522 @@
+/* ═══════════════════════════════════════════════
+   HERO — Cinematic Money Heist
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.hero {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    overflow-x: clip;
+    overflow-y: visible;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    perspective: 1000px;
+    /* Enable 3D perspective */
+}
+
+/* Smooth bottom fade into next section */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    /* Shortened to pull the next section tighter */
+    background: linear-gradient(to bottom, transparent, var(--color-background, #050505));
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ── Layer 1: Background Crowd (heist-overlay image) ── */
+.hero__overlay {
+    position: absolute;
+    inset: -40px;
+    z-index: 1;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+.hero__overlay-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) grayscale(0.4);
+    opacity: 0.9;
+}
+
+/* ── Vignette ── */
+.hero__vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(ellipse 90% 85% at 50% 50%,
+            transparent 30%,
+            rgba(0, 0, 0, 0.4) 65%,
+            rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+}
+
+/* ── Grain ── */
+.hero__grain {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Layer 2: Year Digits (visible: "2" and "0") ── */
+.hero__year {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 6%;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+.hero__year-digit {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(180px, 28vw, 380px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.1);
+    -webkit-text-stroke: 2px rgba(229, 9, 20, 0.5);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 0.8;
+    user-select: none;
+    padding-bottom: 8%;
+    filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.2));
+}
+
+.hero__year-left {
+    margin-left: 2%;
+}
+
+.hero__year-right {
+    margin-right: 2%;
+}
+
+/* ── Mobile Version Text (Hidden on Desktop) ── */
+.hero__mobile-version {
+    display: none;
+}
+
+/* ── Hidden year digits (peek behind hero) ── */
+.hero__year-hidden {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(100px, 20vw, 300px);
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+.hero__year-digit-hidden {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(180px, 28vw, 380px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.05);
+    -webkit-text-stroke: 1.5px rgba(229, 9, 20, 0.3);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 0.8;
+    user-select: none;
+    padding-bottom: 8%;
+}
+
+/* ── Layer 3: Main Title ── */
+.hero__title-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+.hero__title {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    white-space: nowrap;
+    line-height: 1;
+    margin: 0;
+    margin-top: -8%;
+}
+
+.hero__title-algo,
+.hero__title-storm {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(80px, 16vw, 220px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 0.85;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+}
+
+.hero__title-algo {
+    color: #FFFFFF;
+}
+
+.hero__title-storm {
+    color: #E50914;
+    text-shadow:
+        0 0 40px rgba(229, 9, 20, 0.4),
+        0 0 80px rgba(229, 9, 20, 0.15),
+        0 4px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* ── Layer 4: Hero Figure ── */
+.hero__figure-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+.hero__figure-glow {
+    position: absolute;
+    width: clamp(250px, 35vw, 500px);
+    height: clamp(350px, 50vh, 700px);
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+            rgba(229, 9, 20, 0.2) 0%,
+            rgba(229, 9, 20, 0.08) 40%,
+            transparent 70%);
+    animation: heroPulse 4s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes heroPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+.hero__figure {
+    position: relative;
+    width: clamp(450px, 65vw, 950px);
+    height: auto;
+    margin-top: 8%;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6));
+    transition: transform 0.1s ease-out;
+}
+
+.hero__figure-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.7));
+    object-fit: contain;
+}
+
+/* ── Layer 5: Bottom Crime Scene Tape ── */
+.hero__marquee-wrap {
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    width: 110%;
+    height: 72px;
+    z-index: 7;
+    pointer-events: none;
+    transform: rotate(-2deg);
+    transform-origin: center center;
+}
+
+.hero__marquee-strip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+            rgba(229, 9, 20, 0.06) 0%,
+            rgba(229, 9, 20, 0.2) 40%,
+            rgba(229, 9, 20, 0.2) 60%,
+            rgba(229, 9, 20, 0.06) 100%);
+    border-top: 2px solid rgba(229, 9, 20, 0.6);
+    border-bottom: 2px solid rgba(229, 9, 20, 0.6);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    box-shadow:
+        0 0 30px rgba(229, 9, 20, 0.15),
+        inset 0 0 20px rgba(229, 9, 20, 0.05);
+}
+
+.hero__marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    width: max-content;
+    animation: marqueeScroll 30s linear infinite;
+}
+
+@keyframes marqueeScroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.hero__marquee-face {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(229, 9, 20, 0.85);
+    overflow: hidden;
+    box-shadow: 0 0 14px rgba(229, 9, 20, 0.35),
+        0 0 4px rgba(229, 9, 20, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+.hero__marquee-face-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: saturate(1.2);
+}
+
+/* ── Red pulse behind hero ── */
+.hero__pulse-glow {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(300px, 40vw, 600px);
+    height: clamp(300px, 40vw, 600px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+    z-index: 3;
+    animation: heroPulse 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive — Mobile (≤ 768px)
+   Match desktop layout: big hero img, ALGOSTORM
+   text behind, year digits, marquee beneath image
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        /* Ensure content centers properly */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Overlay — flush on touch devices */
+    .hero__overlay {
+        inset: 0;
+        background: radial-gradient(ellipse 100% 90% at 50% 55%,
+                transparent 15%,
+                rgba(0, 0, 0, 0.45) 55%,
+                rgba(0, 0, 0, 0.9) 100%);
+    }
+
+    .hero__overlay-img {
+        /* Fix cropping issue on mobile */
+        height: 100svh;
+        object-position: center top;
+    }
+
+    /* Vignette — tighter for drama */
+    .hero__vignette {
+        background: radial-gradient(ellipse 100% 90% at 50% 55%,
+                transparent 15%,
+                rgba(0, 0, 0, 0.45) 55%,
+                rgba(0, 0, 0, 0.9) 100%);
+    }
+
+    /* ── Title: same row layout as desktop, scaled for mobile ── */
+    .hero__title {
+        flex-direction: row;
+        margin-top: -25%;
+        transform: translateY(-180px);
+    }
+
+    .hero__title-algo,
+    .hero__title-storm {
+        font-size: clamp(80px, 20vw, 170px);
+    }
+
+    /* ── Hide Year Digits on Mobile ── */
+    .hero__year,
+    .hero__year-hidden {
+        display: none;
+    }
+
+    /* ── Show Mobile "2.0" Version ── */
+    .hero__mobile-version {
+        display: flex;
+        position: absolute;
+        inset: 0;
+        top: 25%;
+        /* Position below title */
+        justify-content: center;
+        align-items: flex-start;
+        z-index: 3;
+        /* Behind figure (6) and title (5) */
+        pointer-events: none;
+    }
+
+    .hero__mobile-version-text {
+        font-family: 'Bebas Neue', Impact, sans-serif;
+        font-size: clamp(160px, 45vw, 400px);
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.05);
+        /* Faint fill */
+        -webkit-text-stroke: 2px rgba(229, 9, 20, 0.6);
+        /* Neon outline */
+        text-shadow: 0 0 30px rgba(229, 9, 20, 0.25);
+        /* Subtle glow */
+        line-height: 0.8;
+    }
+
+    /* ── Year digits: Moved up below title */
+    /* These rules are now overridden by display: none above */
+    .hero__year-digit {
+        font-size: clamp(150px, 34vw, 320px);
+        -webkit-text-stroke: 1.5px rgba(229, 9, 20, 0.4);
+        padding-bottom: 0;
+    }
+
+    .hero__year-digit-hidden {
+        font-size: clamp(150px, 34vw, 320px);
+        padding-bottom: 0;
+    }
+
+    .hero__year-hidden {
+        gap: clamp(70px, 18vw, 180px);
+        /* Position just below the title */
+        align-items: flex-start;
+        top: 25%;
+        bottom: auto;
+        inset: 25% 0 auto 0;
+    }
+
+    .hero__year {
+        padding: 0 3%;
+        /* Position just below the title */
+        align-items: flex-start;
+        top: 25%;
+        bottom: auto;
+        inset: 25% 6% auto 6%;
+    }
+
+    /* ── Figure: Scaled massive as requested ── */
+    .hero__figure {
+        width: clamp(400px, 180vw, 750px);
+        margin-top: 8%;
+        flex-shrink: 0;
+        transform: scale(2.3);
+        translate: 0 35%;
+        margin-left: 60px;
+    }
+
+    .hero__figure-glow {
+        width: clamp(300px, 85vw, 600px);
+        height: clamp(400px, 95vw, 750px);
+    }
+
+    .hero__pulse-glow {
+        width: clamp(300px, 85vw, 600px);
+        height: clamp(300px, 85vw, 600px);
+    }
+
+    /* ── Marquee: sits at bottom, hides hero image clipping ── */
+    .hero__marquee-wrap {
+        height: 56px;
+        bottom: 0;
+    }
+
+    .hero__marquee-face {
+        width: 38px;
+        height: 38px;
+        border-width: 1.5px;
+    }
+
+    .hero__marquee-track {
+        gap: 16px;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive — Small Phones (≤ 480px)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .hero__title {
+        margin-top: -28%;
+        /* Even higher on small screens */
+    }
+
+    .hero__title-algo,
+    .hero__title-storm {
+        font-size: clamp(50px, 19vw, 130px);
+    }
+
+    .hero__mobile-version-text {
+        font-size: clamp(140px, 40vw, 300px);
+    }
+
+    .hero__year-hidden {
+        gap: clamp(45px, 14vw, 140px);
+    }
+
+    .hero__figure {
+        width: clamp(360px, 110vw, 600px);
+        margin-top: 10%;
+        flex-shrink: 0;
+    }
+
+    /* Marquee stays prominent to mask image bottom */
+    .hero__marquee-wrap {
+        height: 50px;
+    }
+
+    .hero__marquee-face {
+        width: 34px;
+        height: 34px;
+    }
+}

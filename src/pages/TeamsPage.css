@@ -1,0 +1,358 @@
+/* ═══════════════════════════════════════════════
+   TEAMS PAGE — BRUTALIST HYPER SCROLL
+   ═══════════════════════════════════════════════ */
+
+.team-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #030303;
+    color: #e0e0e0;
+    overflow: hidden;
+    cursor: crosshair;
+    z-index: 10;
+}
+
+/* --- POST PROCESSING & OVERLAYS --- */
+.team-scanlines {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 0, 0, 0.2) 50%,
+            rgba(0, 0, 0, 0.2));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.team-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, #000 120%);
+    z-index: 11;
+    pointer-events: none;
+}
+
+.team-noise {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    opacity: 0.07;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- HUD --- */
+.team-hud {
+    position: absolute;
+    inset: 2rem;
+    z-index: 20;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.team-hud-top,
+.team-hud-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-hud strong {
+    color: #00f3ff;
+}
+
+.team-hud-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 1rem;
+    position: relative;
+}
+
+.team-hud-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    background: #ff003c;
+}
+
+.team-center-nav {
+    align-self: flex-start;
+    margin-top: auto;
+    margin-bottom: auto;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+/* --- 3D SCENE --- */
+.team-viewport {
+    position: absolute;
+    inset: 0;
+    perspective: 1000px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.team-world {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.team-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    backface-visibility: hidden;
+    transform-origin: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- CARDS & CONTENT --- */
+.team-3d-card {
+    width: 380px;
+    height: 520px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translate(-50%, -50%);
+    will-change: transform, box-shadow;
+}
+
+@media (hover: hover) {
+    .team-3d-card:hover {
+        border-color: #ff003c;
+        box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+        background: rgba(20, 20, 20, 0.8);
+        z-index: 100 !important;
+    }
+}
+
+.team-3d-card::before,
+.team-3d-card::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.team-3d-card::before {
+    top: -1px;
+    left: -1px;
+    border-top-color: #e0e0e0;
+    border-left-color: #e0e0e0;
+}
+
+.team-3d-card::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom-color: #e0e0e0;
+    border-right-color: #e0e0e0;
+}
+
+.team-3d-card:hover::before,
+.team-3d-card:hover::after {
+    width: 100%;
+    height: 100%;
+    border-color: #ff003c;
+}
+
+.team-3d-card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-3d-card-id {
+    font-family: 'JetBrains Mono', monospace;
+    color: #ff003c;
+    font-size: 0.8rem;
+}
+
+.team-3d-card h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2.5rem;
+    line-height: 0.9;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    mix-blend-mode: hard-light;
+}
+
+/* Image override for cards */
+.team-3d-card-img-wrap {
+    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.team-3d-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(120%);
+    transition: filter 0.3s ease;
+}
+
+.team-3d-card:hover .team-3d-card-img {
+    filter: grayscale(0%) contrast(100%);
+}
+
+.team-3d-card-footer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- BIG TEXT (Category Header) --- */
+.team-big-text {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(8vw, 15vw, 20vw);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.05);
+    /* faint fill for better visibility */
+    -webkit-text-stroke: 3px rgba(255, 0, 60, 0.8);
+    /* thicker, brighter red stroke */
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+    letter-spacing: -0.2vw;
+    mix-blend-mode: normal;
+    text-shadow: 0 0 60px rgba(255, 0, 60, 0.4), 0 0 120px rgba(255, 0, 60, 0.2);
+    /* intense ambient red glow */
+}
+
+/* --- PARTICLES --- */
+.team-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+/* --- SCROLL PROXY --- */
+.team-scroll-proxy {
+    /* Height will be injected dynamically by React */
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+/* --- FALLBACKS / UTILS --- */
+.team-member-name {
+    font-size: 2rem !important;
+}
+
+.team-member-role {
+    color: #00f3ff;
+    font-size: 0.85rem !important;
+}
+
+/* --- SPECIAL HIGHLIGHT FOR NIKHIL YADAV --- */
+.team-item--nikhil {
+    z-index: 50;
+}
+
+.team-3d-card--is-nikhil {
+    width: 440px;
+    height: 600px;
+    border: 2px solid #00f3ff;
+    box-shadow: 0 0 50px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.2);
+    animation: nikhil-pulse 3s infinite alternate;
+}
+
+@keyframes nikhil-pulse {
+    0% {
+        box-shadow: 0 0 40px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 80px rgba(0, 243, 255, 0.6), inset 0 0 30px rgba(0, 243, 255, 0.4);
+        border-color: #fff;
+    }
+}
+
+.team-3d-card--is-nikhil h2 {
+    color: #00f3ff;
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+    font-size: 3.2rem;
+}
+
+.team-3d-card--is-nikhil .team-3d-card-img {
+    filter: grayscale(0%) contrast(110%);
+}
+
+.team-3d-card--is-nikhil::before,
+.team-3d-card--is-nikhil::after {
+    border-color: #00f3ff;
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    .team-3d-card {
+        width: 85vw;
+        height: 60vh;
+        max-height: 400px;
+        padding: 1.5rem;
+    }
+
+    .team-3d-card h2 {
+        font-size: 2rem;
+    }
+
+    .team-big-text {
+        font-size: clamp(15vw, 18vw, 22vw);
+        white-space: normal;
+        text-align: center;
+        width: 100vw;
+        line-height: 1;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5);
+    }
+
+    .team-3d-card--is-nikhil {
+        width: 90vw;
+        height: 70vh;
+        max-height: 500px;
+    }
+}
