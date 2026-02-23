@@ -8,6 +8,7 @@ import Hero from './components/features/Hero';
 import WhatIsAlgoStorm from './components/features/WhatIsAlgoStorm';
 import MorphTransition from './components/features/MorphTransition';
 import Season1Recap from './components/features/Season1Recap';
+import Location from './components/features/Location';
 import FAQ from './components/features/FAQ';
 import TeamsPage from './pages/TeamsPage';
 import Loader from './components/ui/Loader';
@@ -68,6 +69,7 @@ function App() {
                 <WhatIsAlgoStorm />
               </MorphTransition>
               <Season1Recap />
+              <Location />
               <FAQ />
             </>
           } />
