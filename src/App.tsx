@@ -8,8 +8,8 @@ import Hero from './components/features/Hero';
 import WhatIsAlgoStorm from './components/features/WhatIsAlgoStorm';
 import MorphTransition from './components/features/MorphTransition';
 import Season1Recap from './components/features/Season1Recap';
+import FAQ from './components/features/FAQ';
 import TeamsPage from './pages/TeamsPage';
-import Footer from './components/layout/Footer';
 import Loader from './components/ui/Loader';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -28,8 +28,6 @@ function ScrollToTop() {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
-  const isTeamsPage = location.pathname === '/teams';
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -70,12 +68,12 @@ function App() {
                 <WhatIsAlgoStorm />
               </MorphTransition>
               <Season1Recap />
+              <FAQ />
             </>
           } />
           <Route path="/teams" element={<TeamsPage />} />
         </Routes>
       </main>
-      {!isTeamsPage && <Footer />}
     </>
   );
 }
