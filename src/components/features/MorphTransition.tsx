@@ -39,12 +39,15 @@ export default function MorphTransition({ children }: MorphTransitionProps) {
             const endScale = isMobile ? 1.3 : 1.8;
             const endRotationX = isMobile ? 15 : 45;
 
+            const startY = window.innerHeight * 1.2;
+            const endY = -window.innerHeight * 1.2;
+
             tl.set(content, { autoAlpha: 0 }, 0.4);
 
             // One massive smooth arc taking up the entire scrub
             tl.fromTo(svg,
-                { y: '120vh', scale: 1.2, rotationX: -40, opacity: 1, force3D: true },
-                { y: '-120vh', scale: endScale, rotationX: endRotationX, duration: 1, ease: 'power1.inOut', force3D: true },
+                { y: startY, scale: 1.2, rotationX: -40, opacity: 1, force3D: true },
+                { y: endY, scale: endScale, rotationX: endRotationX, duration: 1, ease: 'power1.inOut', force3D: true },
                 0
             );
 
