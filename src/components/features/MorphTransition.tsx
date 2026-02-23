@@ -49,7 +49,7 @@ export default function MorphTransition({ children }: MorphTransitionProps) {
             // One massive smooth arc taking up the entire 1 second scrub (0 to 1 duration)
             tl.fromTo(svg,
                 { y: '120vh', scale: 1.2, rotationX: -40, opacity: 1, force3D: true },
-                { y: '-120vh', scale: endScale, rotationX: endRotationX, duration: 1, ease: 'power1.inOut', force3D: true },
+                { y: '-120vh', scale: endScale, rotationX: endRotationX, duration: 1, ease: 'none', force3D: true },
                 0
             );
 
