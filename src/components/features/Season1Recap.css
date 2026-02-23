@@ -359,9 +359,11 @@
 
     /* Remove the complex curved mask on phones and use a clean rounded rectangle */
     .s1-img img {
-        -webkit-mask-image: none;
-        mask-image: none;
         border-radius: 8px;
+        filter: none;
+        /* Disables heavy GPU math on mobile to prevent Safari crashing */
+        will-change: auto;
+        /* Frees up VRAM */
     }
 
     /* Keep pairs strictly forced to left and right edges to prevent stacking */
