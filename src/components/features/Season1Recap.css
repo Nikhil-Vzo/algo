@@ -377,8 +377,8 @@
 
     /* Remove the complex curved mask on phones and use a clean rounded rectangle */
     .s1-img img {
-        mask: none;
-        -webkit-mask: none;
+        -webkit-mask-image: none;
+        mask-image: none;
         border-radius: 8px;
     }
 
