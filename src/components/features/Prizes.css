@@ -1,0 +1,397 @@
+/* ═══════════════════════════════════════════════
+   PRIZES SECTION - GRITTY BOUNTY BOARD
+   ═══════════════════════════════════════════════ */
+
+.prizes-section {
+    position: relative;
+    width: 100%;
+    min-height: 90vh;
+    background-color: #050505;
+    /* Deeper black */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem;
+    z-index: 10;
+    overflow: hidden;
+    border-top: 2px solid rgba(229, 9, 20, 0.2);
+    border-bottom: 2px solid rgba(229, 9, 20, 0.2);
+}
+
+.prizes-container {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    z-index: 2;
+}
+
+/* ═══════════════════════════════════════════════
+   HEADER & GLITCH
+   ═══════════════════════════════════════════════ */
+
+.prizes-header {
+    text-align: left;
+    margin-bottom: 4rem;
+    position: relative;
+    padding-left: 2rem;
+    border-left: 6px solid var(--color-primary, #e50914);
+}
+
+.glitch-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    letter-spacing: 0.05em;
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+    position: relative;
+}
+
+/* Generic CSS Glitch Effect */
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 blue;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(10px, 9999px, 83px, 0);
+    }
+
+    20% {
+        clip: rect(62px, 9999px, 12px, 0);
+    }
+
+    40% {
+        clip: rect(87px, 9999px, 45px, 0);
+    }
+
+    60% {
+        clip: rect(3px, 9999px, 82px, 0);
+    }
+
+    80% {
+        clip: rect(51px, 9999px, 10px, 0);
+    }
+
+    100% {
+        clip: rect(98px, 9999px, 54px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 100px, 0);
+    }
+
+    20% {
+        clip: rect(10px, 9999px, 50px, 0);
+    }
+
+    40% {
+        clip: rect(40px, 9999px, 80px, 0);
+    }
+
+    60% {
+        clip: rect(80px, 9999px, 20px, 0);
+    }
+
+    80% {
+        clip: rect(25px, 9999px, 60px, 0);
+    }
+
+    100% {
+        clip: rect(90px, 9999px, 10px, 0);
+    }
+}
+
+.prizes-subtitle {
+    font-family: var(--font-primary, sans-serif);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    letter-spacing: 0.4em;
+    color: var(--color-primary, #e50914);
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+/* ═══════════════════════════════════════════════
+   BOUNTY BOARD ROWS
+   ═══════════════════════════════════════════════ */
+
+.bounty-board {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bounty-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Sharp angular corners */
+    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.bounty-row:hover {
+    background: #111;
+    border-color: rgba(229, 9, 20, 0.5);
+    transform: scale(1.02) translateX(10px);
+    box-shadow: -10px 0 30px rgba(229, 9, 20, 0.2);
+}
+
+/* Row 1 gets special primary red treatment */
+.bounty-rank-01 {
+    border-left: 4px solid var(--color-primary, #e50914);
+    background: linear-gradient(90deg, rgba(229, 9, 20, 0.1) 0%, transparent 50%);
+}
+
+.bounty-row:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-primary, #e50914);
+    box-shadow: 0 0 15px var(--color-primary, #e50914);
+}
+
+/* ═══════════════════════════════════════════════
+   ROW INFORMATION
+   ═══════════════════════════════════════════════ */
+
+.bounty-info {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.bounty-rank {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.1);
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.rank-hash {
+    font-size: 2.5rem;
+    color: var(--color-primary, #e50914);
+    vertical-align: top;
+}
+
+.bounty-row:hover .bounty-rank {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.bounty-names {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bounty-status {
+    font-family: var(--font-primary, sans-serif);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--color-primary, #e50914);
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+}
+
+.bounty-title {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+    color: white;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.bounty-sub {
+    font-family: var(--font-primary, sans-serif);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+}
+
+/* ═══════════════════════════════════════════════
+   ROW REWARD
+   ═══════════════════════════════════════════════ */
+
+.bounty-reward {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.reward-label {
+    font-family: var(--font-primary, sans-serif);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.5rem;
+}
+
+.reward-amount {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 4.5rem;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    /* Adding slight text skew for aggressive look */
+    transform: skew(-5deg);
+}
+
+.bounty-row:hover .reward-amount {
+    color: var(--color-primary, #e50914);
+    text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+}
+
+.currency {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: 0.5rem;
+}
+
+.bounty-row:hover .currency {
+    color: rgba(229, 9, 20, 0.7);
+}
+
+
+/* ═══════════════════════════════════════════════
+   DECORATIVE OVERLAYS
+   ═══════════════════════════════════════════════ */
+
+.bounty-scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+    background-size: 100% 4px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.prizes-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.prizes-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 30%, #050505 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+    .bounty-info {
+        gap: 1.5rem;
+    }
+
+    .bounty-rank {
+        font-size: 4rem;
+    }
+
+    .bounty-title {
+        font-size: 2.5rem;
+    }
+
+    .reward-amount {
+        font-size: 3.5rem;
+    }
+
+    .currency {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .prizes-section {
+        padding: 5rem 1rem;
+    }
+
+    .prizes-header {
+        padding-left: 1rem;
+        border-left-width: 4px;
+    }
+
+    .bounty-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .bounty-reward {
+        text-align: left;
+        align-items: flex-start;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        padding-top: 1.5rem;
+    }
+
+    .bounty-row:hover {
+        transform: scale(1.02);
+    }
+
+    .reward-amount {
+        font-size: 4rem;
+    }
+}

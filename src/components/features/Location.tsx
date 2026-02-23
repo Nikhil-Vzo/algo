@@ -144,16 +144,16 @@ export default function Location() {
                             <p className="map-address">Manth (Kharora), State Highway 9, Raipur Baloda-Bazar Road, Raipur, Chhattisgarh 493225</p>
 
                             <div className="location-map-container">
-                                {/* Explicitly pinned Amity University Raipur iframe */}
+                                {/* Explicitly pinned Amity University Raipur iframe via exact coordinates */}
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3714.7336181162312!2d81.82138!3d21.39967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dbb3bd1432f7%3A0xc317d7507301c23!2sAmity%20University%2C%20Raipur!5e0!3m2!1sen!2sin!4v1709123456789!5m2!1sen!2sin"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3714.281!2d81.926!3d21.406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDI0JzIxLjYiTiA4McKwNTUnMzMuNiJF!5e0!3m2!1sen!2sin!4v1709123456789!5m2!1sen!2sin&q=21.406,81.926"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
                                     allowFullScreen={true}
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    title="Amity University Raipur Map"
+                                    title="Amity University Raipur Exact Map"
                                 ></iframe>
                             </div>
 
