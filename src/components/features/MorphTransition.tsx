@@ -23,33 +23,28 @@ export default function MorphTransition({ children }: MorphTransitionProps) {
         if (!container || !svg || !content) return;
 
         let ctx = gsap.context(() => {
-            // Pin the container for 200vh
-            // pinSpacing: false allows the next section (Season1Recap) to physically scroll UP
-            // underneath this pinned container while the user scrolls 200vh!
+            // A more lightweight scrolltrigger without heavy scrub dependencies
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: container,
                     start: 'top top',
-                    end: '+=200%',
+                    end: '+=80%', // Shorter scroll distance
                     pin: true,
                     pinSpacing: false,
-                    scrub: 1,
+                    scrub: 0.3, // Smoother scrub
                 }
             });
 
-            // A single smooth mathematical sweep
-            // It starts below the screen tilted back, swoops up, and zooms out over the screen without pausing
             const isMobile = window.innerWidth < 768;
             const endScale = isMobile ? 1.3 : 1.8;
             const endRotationX = isMobile ? 15 : 45;
 
-            // Set the midpoint where the content should flip
-            tl.set(content, { autoAlpha: 0 }, 0.5);
+            tl.set(content, { autoAlpha: 0 }, 0.4);
 
-            // One massive smooth arc taking up the entire 1 second scrub (0 to 1 duration)
+            // One massive smooth arc taking up the entire scrub
             tl.fromTo(svg,
                 { y: '120vh', scale: 1.2, rotationX: -40, opacity: 1, force3D: true },
-                { y: '-120vh', scale: endScale, rotationX: endRotationX, duration: 1, ease: 'none', force3D: true },
+                { y: '-120vh', scale: endScale, rotationX: endRotationX, duration: 1, ease: 'power1.inOut', force3D: true },
                 0
             );
 

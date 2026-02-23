@@ -42,18 +42,12 @@
     height: 110%;
     /* Increased height by 10% as requested */
     object-fit: cover;
-    will-change: transform, opacity;
+    will-change: transform;
     /* Translate3d to force completely hardware acceleration on mobile reducing scroll lag */
-    transform: translate3d(0, 0, 0);
+    transform: translateZ(0);
     backface-visibility: hidden;
-    /* Removed drop-shadow to optimize performance and prevent scroll lag during 3D transform */
 
-    /* Custom jagged torn edge on top and bottom so it doesn't look like a flat box */
-    clip-path: polygon(0% 2%, 4% 0%, 8% 3%, 12% 1%, 17% 4%, 22% 0%, 26% 2%, 30% 0%, 35% 3%, 40% 1%,
-            45% 4%, 49% 0%, 54% 2%, 58% 1%, 63% 4%, 67% 0%, 72% 3%, 76% 1%, 81% 4%, 85% 0%,
-            89% 2%, 94% 0%, 98% 3%, 100% 1%,
-
-            100% 99%, 98% 97%, 94% 100%, 89% 98%, 85% 100%, 81% 96%, 76% 99%, 72% 97%, 67% 100%, 63% 96%,
-            58% 99%, 54% 98%, 49% 100%, 45% 96%, 40% 99%, 35% 97%, 30% 100%, 26% 98%, 22% 100%, 17% 96%,
-            12% 99%, 8% 97%, 4% 100%, 0% 98%);
+    /* Removed expensive clip-path that was causing extreme scroll lag.
+       If jagged edges are needed, bake them directly into the SVG file instead. */
+    border-radius: 2%;
 }
