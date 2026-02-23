@@ -1,0 +1,243 @@
+/* ═══════════════════════════════════════════════
+   TIMELINE SECTION
+   ═══════════════════════════════════════════════ */
+
+.timeline-section {
+    position: relative;
+    width: 100%;
+    background-color: #080808;
+    padding: 8rem 2rem;
+    z-index: 10;
+    overflow: hidden;
+    border-top: 1px solid rgba(229, 9, 20, 0.2);
+}
+
+.timeline-header {
+    text-align: center;
+    margin-bottom: 6rem;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-header h2 {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    letter-spacing: 0.1em;
+    color: white;
+    margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+}
+
+.timeline-header p {
+    font-family: var(--font-primary, sans-serif);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    letter-spacing: 0.3em;
+    color: var(--color-primary, #e50914);
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+/* ═══════════════════════════════════════════════
+   TIMELINE CONTAINER & SVG
+   ═══════════════════════════════════════════════ */
+
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Height dictates the length of the scroll scrub! */
+    height: 2500px;
+}
+
+.timeline-svg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.timeline-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.timeline-face-pin {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: auto;
+    z-index: 10;
+    filter: drop-shadow(0 0 15px rgba(229, 9, 20, 0.8));
+    /* Auto rotate happens in GSAP, but will add smooth transition for non-scrub moments */
+    will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════
+   EVENTS GRID
+   ═══════════════════════════════════════════════ */
+
+.timeline-events-grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5% 0;
+    /* buffer top and bottom */
+    z-index: 2;
+}
+
+.timeline-event {
+    display: flex;
+    width: 45%;
+    position: relative;
+    transform-origin: center;
+}
+
+.timeline-event.left {
+    align-self: flex-start;
+    justify-content: flex-end;
+    text-align: right;
+    padding-right: 3rem;
+}
+
+.timeline-event.right {
+    align-self: flex-end;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 3rem;
+}
+
+.event-content {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    padding: 2rem;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    max-width: 400px;
+}
+
+.timeline-event:hover .event-content {
+    background: #111;
+    border-color: var(--color-primary, #e50914);
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.15);
+    transform: scale(1.05);
+    /* Slight pop */
+}
+
+.event-time {
+    font-family: var(--font-primary, sans-serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--color-primary, #e50914);
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+}
+
+.event-title {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    color: white;
+    margin: 0 0 1rem 0;
+    line-height: 1;
+}
+
+.event-desc {
+    font-family: var(--font-primary, sans-serif);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Connectors pointing to the curve */
+.event-connector {
+    position: absolute;
+    top: 50%;
+    width: 3rem;
+    height: 2px;
+    background: rgba(229, 9, 20, 0.5);
+    z-index: -1;
+}
+
+.timeline-event.left .event-connector {
+    right: 0;
+}
+
+.timeline-event.right .event-connector {
+    left: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   BACKGROUND GLOW
+   ═══════════════════════════════════════════════ */
+
+.timeline-bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, rgba(229, 9, 20, 0.03) 0%, transparent 60%);
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE MOBILE OVERRIDE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .timeline-container {
+        /* Shorten timeline for mobile to ensure events don't get too spaced */
+        height: 2000px;
+    }
+
+    /* Force the SVG to mostly hug the left side */
+    .timeline-svg {
+        transform: scaleX(0.5);
+        transform-origin: left center;
+        opacity: 0.5;
+        /* Fade it out slightly so it overlaps nicely */
+    }
+
+    .timeline-face-pin {
+        width: 40px;
+        /* Small pin on mobile */
+    }
+
+    .timeline-event {
+        width: 85%;
+        margin-left: auto;
+        /* Push events right, curve left */
+        margin-right: 0;
+    }
+
+    .timeline-event.left,
+    .timeline-event.right {
+        align-self: flex-end;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0 0 0 2rem;
+    }
+
+    .event-content {
+        max-width: 100%;
+    }
+
+    .timeline-event.left .event-connector,
+    .timeline-event.right .event-connector {
+        left: 0;
+        width: 2rem;
+    }
+}

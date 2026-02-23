@@ -7,6 +7,7 @@ import Navbar from './components/layout/Navbar';
 import Hero from './components/features/Hero';
 import WhatIsAlgoStorm from './components/features/WhatIsAlgoStorm';
 import MorphTransition from './components/features/MorphTransition';
+import Timeline from './components/features/Timeline';
 import Season1Recap from './components/features/Season1Recap';
 import Prizes from './components/features/Prizes';
 import Location from './components/features/Location';
@@ -70,6 +71,7 @@ function App() {
                 <WhatIsAlgoStorm />
               </MorphTransition>
               <Season1Recap />
+              <Timeline />
               <Prizes />
               <Location />
               <FAQ />
