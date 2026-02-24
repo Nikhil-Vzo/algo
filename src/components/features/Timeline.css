@@ -198,46 +198,168 @@
    ═══════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
+    .timeline-section {
+        padding: 4rem 1rem;
+    }
+
+    .timeline-header {
+        margin-bottom: 3rem;
+    }
+
     .timeline-container {
-        /* Shorten timeline for mobile to ensure events don't get too spaced */
-        height: 2000px;
+        height: auto;
+        min-height: 0;
+        padding-bottom: 2rem;
+        /* CSS vertical line down the left side */
+        position: relative;
     }
 
-    /* Force the SVG to mostly hug the left side */
-    .timeline-svg {
-        transform: scaleX(0.5);
-        transform-origin: left center;
-        opacity: 0.5;
-        /* Fade it out slightly so it overlaps nicely */
+    /* Hide the SVG curve — it doesn't scale to narrow screens */
+    .timeline-svg-container {
+        display: none;
     }
 
+    /* Hide the face pin — MotionPath doesn't work on hidden SVG */
     .timeline-face-pin {
-        width: 40px;
-        /* Small pin on mobile */
+        display: none;
     }
 
-    .timeline-event {
-        width: 85%;
-        margin-left: auto;
-        /* Push events right, curve left */
-        margin-right: 0;
-    }
-
-    .timeline-event.left,
-    .timeline-event.right {
-        align-self: flex-end;
+    /* Vertical line via pseudo-element */
+    .timeline-events-grid {
+        padding: 0;
+        gap: 0;
         justify-content: flex-start;
-        text-align: left;
-        padding: 0 0 0 2rem;
+        position: relative;
+        padding-left: 32px;
+    }
+
+    .timeline-events-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 11px;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(229, 9, 20, 0.6) 5%,
+                rgba(229, 9, 20, 0.6) 95%,
+                transparent 100%);
+    }
+
+    /* All events stack to the right */
+    .timeline-event {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        align-self: stretch !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        padding: 0 !important;
+        padding-bottom: 2rem !important;
+        position: relative;
+    }
+
+    /* Red dot marker on the vertical line */
+    .timeline-dot {
+        display: block;
+        position: absolute;
+        left: -28px;
+        top: 1.8rem;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e50914;
+        box-shadow: 0 0 8px rgba(229, 9, 20, 0.8), 0 0 20px rgba(229, 9, 20, 0.3);
+        z-index: 3;
+        border: 2px solid #080808;
     }
 
     .event-content {
         max-width: 100%;
+        padding: 1.2rem 1rem;
+        clip-path: none;
+        border-radius: 8px;
     }
 
-    .timeline-event.left .event-connector,
-    .timeline-event.right .event-connector {
-        left: 0;
-        width: 2rem;
+    .event-title {
+        font-size: 1.6rem;
     }
+
+    .event-time {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+    }
+
+    .event-desc {
+        font-size: 0.85rem;
+    }
+
+    /* Hide old connectors on mobile */
+    .event-connector {
+        display: none !important;
+    }
+
+    .timeline-bg-glow {
+        filter: blur(60px);
+        opacity: 0.5;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   SMALL PHONES (≤ 480px)
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+    .timeline-section {
+        padding: 3rem 0.75rem;
+    }
+
+    .timeline-header h2 {
+        font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+
+    .timeline-header p {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+    }
+
+    .timeline-events-grid {
+        padding-left: 28px;
+    }
+
+    .timeline-events-grid::before {
+        left: 9px;
+    }
+
+    .timeline-dot {
+        left: -24px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .event-content {
+        padding: 1rem 0.8rem;
+    }
+
+    .event-title {
+        font-size: 1.4rem;
+    }
+
+    .event-time {
+        font-size: 0.7rem;
+    }
+
+    .event-desc {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   HIDE DOT ON DESKTOP (shown only on mobile)
+   ═══════════════════════════════════════════════ */
+
+.timeline-dot {
+    display: none;
 }

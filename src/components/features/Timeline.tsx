@@ -152,6 +152,7 @@ export default function Timeline() {
                         const isLeft = index % 2 === 0;
                         return (
                             <div key={index} className={`timeline-event ${isLeft ? 'left' : 'right'}`}>
+                                <span className="timeline-dot" />
                                 <div className="event-content">
                                     <h4 className="event-time">{evt.time}</h4>
                                     <h3 className="event-title">{evt.title}</h3>

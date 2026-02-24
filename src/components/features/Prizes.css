@@ -395,3 +395,46 @@
         font-size: 4rem;
     }
 }
+
+/* ═══════════════════════════════════════════════
+   SMALL PHONES (≤ 480px)
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+    .prizes-section {
+        padding: 4rem 0.75rem;
+    }
+
+    .bounty-row {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .bounty-info {
+        gap: 1rem;
+    }
+
+    .bounty-rank {
+        font-size: 3rem;
+    }
+
+    .rank-hash {
+        font-size: 1.5rem;
+    }
+
+    .bounty-title {
+        font-size: 1.8rem;
+    }
+
+    .bounty-sub {
+        font-size: 0.8rem;
+    }
+
+    .reward-amount {
+        font-size: 3rem;
+    }
+
+    .currency {
+        font-size: 1.5rem;
+    }
+}

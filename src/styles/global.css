@@ -178,3 +178,28 @@ h6 {
         font-size: var(--text-3xl);
     }
 }
+
+/* ═══════════════════════════════════════════════
+   Accessibility — Reduced Motion
+   ═══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   Mobile Performance — Reduce GPU-heavy effects
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .glass {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
